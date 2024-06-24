@@ -1,7 +1,7 @@
-console.log('Dienerld');
+console.log("Dienerld");
 
 export default function hello() {
-  console.log('Hello World');
+	console.log("Hello World");
 }
 
 hello();

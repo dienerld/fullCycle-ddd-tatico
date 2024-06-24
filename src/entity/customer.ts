@@ -1,58 +1,72 @@
-import { Address } from './address';
+import { Address } from "./address";
 
 export class Customer {
-  private _id: string;
-  private _name: string;
-  private _address!: Address;
-  private _active: boolean;
+	private _id: string;
+	private _name: string;
+	private _address!: Address;
+	private _active: boolean;
+	private _rewardPoints: number;
 
-  constructor(id: string, name: string) {
-    this._id = id;
-    this._name = name;
-    this._active = false;
-    this.validate();
-  }
+	constructor(id: string, name: string) {
+		this._id = id;
+		this._name = name;
+		this._active = false;
+		this._rewardPoints = 0;
+		this.validate();
+	}
 
-  changeName(name: string) {
-    this._name = name;
-    this.validate();
-  }
+	changeName(name: string) {
+		this._name = name;
+		this.validate();
+	}
 
-  activate() {
-    if (!this._address) {
-      throw new Error('Address is mandatory to activate customer');
-    }
-    this._active = true;
-  }
+	activate() {
+		if (!this._address) {
+			throw new Error("Address is mandatory to activate customer");
+		}
+		this._active = true;
+	}
 
-  deactivate() {
-    this._active = false;
-  }
+	deactivate() {
+		this._active = false;
+	}
 
-  setAddress(address: Address) {
-    this._address = address;
-    this.validate();
-  }
+	setAddress(address: Address) {
+		this._address = address;
+		this.validate();
+	}
 
-  get name(): string {
-    return this._name;
-  }
+	addRewardPoints(points: number) {
+		this._rewardPoints += points;
+	}
 
-  isActive(): boolean {
-    return this._active;
-  }
+	get id(): string {
+		return this._id;
+	}
 
-  private validate() {
-    if (!this._id || this._id.length === 0) {
-      throw new Error('Invalid id');
-    }
+	get name(): string {
+		return this._name;
+	}
 
-    if (!this._name || this._name.length === 0) {
-      throw new Error('Name is required');
-    }
+	get rewardPoints(): number {
+		return this._rewardPoints;
+	}
 
-    // if (!this._address) {
-    //   throw new Error('Address is required');
-    // }
-  }
+	isActive(): boolean {
+		return this._active;
+	}
+
+	private validate() {
+		if (!this._id || this._id.length === 0) {
+			throw new Error("Invalid id");
+		}
+
+		if (!this._name || this._name.length === 0) {
+			throw new Error("Name is required");
+		}
+
+		// if (!this._address) {
+		//   throw new Error('Address is required');
+		// }
+	}
 }
