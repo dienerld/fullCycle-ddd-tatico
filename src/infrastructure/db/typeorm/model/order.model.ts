@@ -27,8 +27,8 @@ export class OrderModel extends Model {
 	@BelongsTo(() => CustomerModel)
 	declare customer: CustomerModel;
 
-  @HasMany(() => OrderItemModel)
-  declare items: OrderItemModel[]
+	@HasMany(() => OrderItemModel)
+	declare items: OrderItemModel[];
 
 	@Column({ allowNull: false, type: DataType.REAL })
 	declare total: number;

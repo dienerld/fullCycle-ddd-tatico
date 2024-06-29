@@ -29,7 +29,6 @@ export class Address {
 		return this._zip;
 	}
 
-
 	toString() {
 		return `${this._street}, ${this._city}, ${this._state} ${this._zip}`;
 	}
