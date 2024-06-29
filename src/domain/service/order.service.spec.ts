@@ -1,7 +1,7 @@
-import { Order } from "@/entity/order";
-import { OrderItem } from "@/entity/order-item";
+import { Order } from "@/domain/entity/order";
+import { OrderItem } from "@/domain/entity/order-item";
 import { OrderService } from "./order.service";
-import { Customer } from "@/entity/customer";
+import { Customer } from "@/domain/entity/customer";
 
 describe("Order Service", () => {
 	it("should place an order", () => {
