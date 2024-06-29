@@ -1,4 +1,4 @@
-import { OrderItem } from "./order-item";
+import type { OrderItem } from "./order-item";
 
 export class Order {
 	private _id: string;
@@ -16,6 +16,19 @@ export class Order {
 
 	total(): number {
 		return this._items.reduce((acc, item) => acc + item.total(), 0);
+	}
+
+
+	get id(): string {
+		return this._id;
+	}
+
+	get customerId(): string {
+		return this._customerId;
+	}
+
+	get items(): OrderItem[] {
+		return this._items;
 	}
 
 	private validate() {

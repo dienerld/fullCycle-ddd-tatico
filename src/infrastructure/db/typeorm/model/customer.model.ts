@@ -1,9 +1,21 @@
-import { Column, DataType, Model, PrimaryKey } from "sequelize-typescript";
+import {
+	Column,
+	DataType,
+	Model,
+	PrimaryKey,
+	Table,
+} from "sequelize-typescript";
 
+@Table({
+	tableName: "customer",
+	timestamps: false,
+})
 export class CustomerModel extends Model {
 	@PrimaryKey
 	@Column({ allowNull: false, type: DataType.STRING })
 	declare id: string;
+
+	@Column({ allowNull: false, type: DataType.STRING })
 	declare name: string;
 
 	@Column({ allowNull: false, type: DataType.STRING })

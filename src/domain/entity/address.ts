@@ -13,6 +13,23 @@ export class Address {
 		this.validate();
 	}
 
+	get street(): string {
+		return this._street;
+	}
+
+	get city(): string {
+		return this._city;
+	}
+
+	get state(): string {
+		return this._state;
+	}
+
+	get zip(): string {
+		return this._zip;
+	}
+
+
 	toString() {
 		return `${this._street}, ${this._city}, ${this._state} ${this._zip}`;
 	}

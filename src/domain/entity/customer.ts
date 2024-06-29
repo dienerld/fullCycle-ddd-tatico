@@ -1,4 +1,4 @@
-import { Address } from "./address";
+import type { Address } from "./address";
 
 export class Customer {
 	private _id: string;
@@ -50,6 +50,10 @@ export class Customer {
 
 	get rewardPoints(): number {
 		return this._rewardPoints;
+	}
+
+	get address(): Address {
+		return this._address;
 	}
 
 	isActive(): boolean {
