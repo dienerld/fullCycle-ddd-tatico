@@ -6,7 +6,7 @@ import { OrderItemModel } from "../model/order-item.model";
 
 export class OrderRepository implements OrderRepositoryInterface {
 	async findAll(): Promise<Order[]> {
-		const orders = await OrderModel.findAll();
+		const orders = await OrderModel.findAll({ include: [OrderItemModel] });
 		return orders.map(
 			(order) =>
 				new Order(
@@ -26,7 +26,7 @@ export class OrderRepository implements OrderRepositoryInterface {
 		);
 	}
 	async findById(id: string): Promise<Order | null> {
-		const order = await OrderModel.findByPk(id);
+		const order = await OrderModel.findByPk(id, { include: [OrderItemModel] });
 		if (!order) {
 			return null;
 		}
@@ -37,10 +37,10 @@ export class OrderRepository implements OrderRepositoryInterface {
 				(item) =>
 					new OrderItem(
 						item.id,
-						item.productId,
-						item.quantity,
 						item.name,
 						item.price,
+						item.productId,
+						item.quantity,
 					),
 			),
 		);
@@ -65,10 +65,26 @@ export class OrderRepository implements OrderRepositoryInterface {
 			},
 		);
 	}
-	update(entity: Order): Promise<void> {
-		throw new Error("Method not implemented.");
+	async update(entity: Order): Promise<void> {
+		await OrderModel.update(
+			{
+				total: entity.total(),
+			},
+			{ where: { id: entity.id } },
+		);
+		await OrderItemModel.destroy({ where: { orderId: entity.id } });
+		await OrderItemModel.bulkCreate(
+			entity.items.map((item) => ({
+				id: item.id,
+				productId: item.productId,
+				orderId: entity.id,
+				quantity: item.quantity,
+				name: item.name,
+				price: item.price,
+			})),
+		);
 	}
-	delete(entity: Order): Promise<void> {
-		throw new Error("Method not implemented.");
+	async delete(entity: Order): Promise<void> {
+		await OrderModel.destroy({ where: { id: entity.id }, cascade: true });
 	}
 }
