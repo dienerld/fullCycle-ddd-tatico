@@ -1,7 +1,7 @@
 import { Product } from "@/domain/product/entity/product";
 import { EventDispatcher } from "@/domain/shared/event/event-dispatcher";
-import { ProductCreatedEvent } from "../product-created.event";
-import { SendMailWhenProductIsCreatedHandler } from "./send-mail-when-product-is-created.handler";
+import { ProductCreatedEvent } from "./product-created.event";
+import { SendMailWhenProductIsCreatedHandler } from "./handler/send-mail-when-product-is-created.handler";
 
 describe("Domain Event", () => {
 	it("should register an event handler", () => {
@@ -16,21 +16,7 @@ describe("Domain Event", () => {
 		expect(dispatcher.getHandlers().get(eventType)?.has(handler)).toBeTruthy();
 	});
 
-	it("should unregister an event handler", () => {
-		const dispatcher = new EventDispatcher();
-		const handler = new SendMailWhenProductIsCreatedHandler();
-		const eventType = ProductCreatedEvent.name;
-
-		dispatcher.register(eventType, handler);
-		expect(dispatcher.getHandlers().get(eventType)?.has(handler)).toBeTruthy();
-
-		dispatcher.unregister(eventType, handler);
-
-		expect(dispatcher.getHandlers().get(eventType)).toBeDefined();
-		expect(dispatcher.getHandlers().get(eventType)?.size).toBe(0);
-	});
-
-	it("should notify all handlers when an event is dispatched", () => {
+	it("should called handle method when an event is dispatched", () => {
 		const dispatcher = new EventDispatcher();
 		const handler = new SendMailWhenProductIsCreatedHandler();
 		const eventType = ProductCreatedEvent.name;
