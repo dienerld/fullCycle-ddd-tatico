@@ -1,4 +1,4 @@
-import { Product } from "@/domain/entity/product";
+import { Product } from "@/domain/product/entity/product";
 import type { ProductRepositoryInterface } from "@/domain/repository/product-repository.interface";
 import { ProductModel } from "../model/product.model";
 

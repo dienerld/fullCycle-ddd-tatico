@@ -1,4 +1,4 @@
-import type { Product } from "@/domain/entity/product";
+import type { Product } from "@/domain/product/entity/product";
 
 export class ProductService {
 	static increasePrice(products: Product[], percentage: number) {

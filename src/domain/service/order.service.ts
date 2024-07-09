@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import type { Customer } from "@/domain/entity/customer";
-import { Order } from "@/domain/entity/order";
+import type { Customer } from "@/domain/customer/entity/customer";
+import { Order } from "@/domain/order/entity/order";
 import type { OrderItem } from "@/domain/entity/order-item";
 
 export class OrderService {

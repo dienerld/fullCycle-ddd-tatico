@@ -1,4 +1,4 @@
-import { Customer } from "@/domain/entity/customer";
+import { Customer } from "@/domain/customer/entity/customer";
 import type { CustomerRepositoryInterface } from "@/domain/repository/customer-repository.interface";
 import { CustomerModel } from "../model/customer.model";
 
