@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import type { Customer } from "@/domain/customer/entity/customer";
-import { Order } from "@/domain/order/entity/order";
-import type { OrderItem } from "../order/entity/order-item";
+import { Order } from "../entity/order";
+import type { OrderItem } from "../entity/order-item";
 
 export class OrderService {
 	static placeOrder(customer: Customer, items: OrderItem[]): Order {

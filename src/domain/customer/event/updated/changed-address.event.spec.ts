@@ -1,7 +1,7 @@
 import { EventDispatcher } from "@/domain/shared/event/event-dispatcher";
 import { LogUpdatedWhenChangeAddressHandler } from "./handler/log-updated-when-change-address.handler";
 import { Customer } from "../../entity/customer";
-import { Address } from "../../entity/address";
+import { Address } from "../../entity/value-object/address";
 import { ChangedAddressEvent } from "./changed-address.event";
 
 describe("ChangedAddressEvent", () => {

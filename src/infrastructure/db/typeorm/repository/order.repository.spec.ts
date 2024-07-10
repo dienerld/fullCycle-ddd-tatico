@@ -1,14 +1,14 @@
 import { Sequelize } from "sequelize-typescript";
-import { Address } from "@/domain/customer/entity/address";
+import { Address } from "@/domain/customer/entity/value-object/address";
 import { Customer } from "@/domain/customer/entity/customer";
-import { Order } from "@/domain/order/entity/order";
-import { OrderItem } from "@/domain/order/entity/order-item";
 import { Product } from "@/domain/product/entity/product";
 import { CustomerModel } from "../model/customer.model";
 import { OrderItemModel } from "../model/order-item.model";
 import { OrderModel } from "../model/order.model";
 import { ProductModel } from "../model/product.model";
 import { OrderRepository } from "./order.repository";
+import { OrderItem } from "@/domain/checkout/entity/order-item";
+import { Order } from "@/domain/checkout/entity/order";
 
 
 describe("[Unit] - Repository -> Order", () => {

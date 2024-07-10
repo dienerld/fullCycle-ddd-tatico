@@ -1,8 +1,8 @@
-import { Order } from "@/domain/order/entity/order";
-import type { OrderRepositoryInterface } from "@/domain/repository/order-repository.interface";
+import type { OrderRepositoryInterface } from "@/domain/checkout/repository/order-repository.interface";
+import { Order } from "@/domain/checkout/entity/order";
+import { OrderItem } from "@/domain/checkout/entity/order-item";
 import { OrderModel } from "../model/order.model";
 import { OrderItemModel } from "../model/order-item.model";
-import { OrderItem } from "@/domain/order/entity/order-item";
 
 export class OrderRepository implements OrderRepositoryInterface {
 	async findAll(): Promise<Order[]> {
