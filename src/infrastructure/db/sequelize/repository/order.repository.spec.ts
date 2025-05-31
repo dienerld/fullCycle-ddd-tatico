@@ -33,7 +33,7 @@ describe("[Unit] - Repository -> Order", () => {
 
 		const customer = new Customer("1", "Customer 1");
 		const address = new Address("Street 1", "City 1", "State 1", "Zip 1");
-		customer.setAddress(address);
+		customer.changeAddress(address);
 
 		await CustomerModel.create({
 			id: customer.id,

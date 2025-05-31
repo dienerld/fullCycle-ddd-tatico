@@ -30,7 +30,7 @@ describe("[Unit] - Repository -> Customer", () => {
 	it("should create a customer", async () => {
 		const customerRepository = new CustomerRepository();
 		const customer = new Customer("1", "Customer 1");
-		customer.setAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
+		customer.changeAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
 
 		await customerRepository.save(customer);
 
@@ -45,7 +45,7 @@ describe("[Unit] - Repository -> Customer", () => {
 	it("should find all customers", async () => {
 		const customerRepository = new CustomerRepository();
 		const customer = new Customer("1", "Customer 1");
-		customer.setAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
+		customer.changeAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
 
 		await customerRepository.save(customer);
 
@@ -58,7 +58,7 @@ describe("[Unit] - Repository -> Customer", () => {
 	it("should find a customer by id", async () => {
 		const customerRepository = new CustomerRepository();
 		const customer = new Customer("1", "Customer 1");
-		customer.setAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
+		customer.changeAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
 
 		await customerRepository.save(customer);
 
@@ -71,7 +71,7 @@ describe("[Unit] - Repository -> Customer", () => {
 	it("should return null when customer is not found", async () => {
 		const customerRepository = new CustomerRepository();
 		const customer = new Customer("1", "Customer 1");
-		customer.setAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
+		customer.changeAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
 
 		await customerRepository.save(customer);
 
@@ -83,7 +83,7 @@ describe("[Unit] - Repository -> Customer", () => {
 	it("should update a customer", async () => {
 		const customerRepository = new CustomerRepository();
 		const customer = new Customer("1", "Customer 1");
-		customer.setAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
+		customer.changeAddress(new Address("Street 1", "City 1", "State 1", "Zip 1"));
 
 		await customerRepository.save(customer);
 
@@ -92,7 +92,7 @@ describe("[Unit] - Repository -> Customer", () => {
 		});
 
 		customer.changeName("Customer 2");
-		customer.setAddress(new Address("Street 2", "City 2", "State 2", "Zip 2"));
+		customer.changeAddress(new Address("Street 2", "City 2", "State 2", "Zip 2"));
 
 		await customerRepository.update(customer);
 
@@ -108,6 +108,7 @@ describe("[Unit] - Repository -> Customer", () => {
 			state: "State 2",
 			city: "City 2",
 			zip: "Zip 2",
+			number: "",
 			active: false,
 			rewardPoints: 0,
 		});
@@ -116,7 +117,7 @@ describe("[Unit] - Repository -> Customer", () => {
 	it("should delete a customer", async () => {
 		const customerRepository = new CustomerRepository();
 		const customer = new Customer("1", "Customer");
-		customer.setAddress(new Address("Street", "City", "State", "Zip"));
+		customer.changeAddress(new Address("Street", "City", "State", "Zip"));
 
 		await customerRepository.save(customer);
 

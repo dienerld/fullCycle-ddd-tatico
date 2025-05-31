@@ -30,6 +30,9 @@ export class CustomerModel extends Model {
 	@Column({ allowNull: false, type: DataType.STRING })
 	declare zip: string;
 
+	@Column({ allowNull: true, type: DataType.STRING })
+	declare number?: string;
+
 	@Column({ allowNull: false, type: DataType.BOOLEAN })
 	declare active: boolean;
 

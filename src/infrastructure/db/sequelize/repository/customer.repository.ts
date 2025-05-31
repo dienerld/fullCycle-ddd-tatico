@@ -1,15 +1,15 @@
 import { Customer } from "@/domain/customer/entity/customer";
-import type { CustomerRepositoryInterface } from "@/domain/repository/customer-repository.interface";
 import { CustomerModel } from "../model/customer.model";
+import type { CustomerRepositoryInterface } from "@domain/customer/repository/customer-repository.interface";
+import { Address } from "@domain/customer/entity/value-object/address";
 
 export class CustomerRepository implements CustomerRepositoryInterface {
 	async findAll(): Promise<Customer[]> {
 		const customers = await CustomerModel.findAll();
 
-		return customers.map(
-			(customer) => new Customer(customer.id, customer.name),
-		);
+		return customers.map((customer) => CustomerMapper.toDomain(customer));
 	}
+
 	async findById(id: string): Promise<Customer | null> {
 		const customer = await CustomerModel.findOne({
 			where: { id },
@@ -17,7 +17,7 @@ export class CustomerRepository implements CustomerRepositoryInterface {
 		if (!customer) {
 			return null;
 		}
-		return new Customer(customer.id, customer.name);
+		return CustomerMapper.toDomain(customer);
 	}
 
 	async save(entity: Customer): Promise<void> {
@@ -28,6 +28,7 @@ export class CustomerRepository implements CustomerRepositoryInterface {
 			state: entity.address.state,
 			city: entity.address.city,
 			zip: entity.address.zip,
+			number: entity.address.number,
 			active: entity.isActive(),
 			rewardPoints: entity.rewardPoints,
 		});
@@ -41,6 +42,7 @@ export class CustomerRepository implements CustomerRepositoryInterface {
 				state: entity.address.state,
 				city: entity.address.city,
 				zip: entity.address.zip,
+				number: entity.address.number,
 				active: entity.isActive(),
 				rewardPoints: entity.rewardPoints,
 			},
@@ -53,5 +55,20 @@ export class CustomerRepository implements CustomerRepositoryInterface {
 		await CustomerModel.destroy({
 			where: { id: entity.id },
 		});
+	}
+}
+
+class CustomerMapper {
+	static toDomain(customerModel: CustomerModel): Customer {
+		const customer = new Customer(customerModel.id, customerModel.name);
+		const address = new Address(
+			customerModel.street,
+			customerModel.city,
+			customerModel.state,
+			customerModel.zip,
+			customerModel.number ?? "",
+		);
+		customer.changeAddress(address);
+		return customer;
 	}
 }

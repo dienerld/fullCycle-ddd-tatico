@@ -1,6 +1,6 @@
 import { Product } from "@/domain/product/entity/product";
-import type { ProductRepositoryInterface } from "@/domain/repository/product-repository.interface";
 import { ProductModel } from "../model/product.model";
+import type { ProductRepositoryInterface } from "@domain/product/repository/product-repository.interface";
 
 export class ProductRepository implements ProductRepositoryInterface {
 	async findAll(): Promise<Product[]> {
