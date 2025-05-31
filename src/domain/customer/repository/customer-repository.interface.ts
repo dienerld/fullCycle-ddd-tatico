@@ -1,5 +1,7 @@
-import type { Customer } from "../customer/entity/customer";
-import type { RepositoryInterface } from "./repository-interface";
+import type { RepositoryInterface } from "@domain/shared/repository/repository-interface";
+import type { Customer } from "@domain/customer/entity/customer";
+import { InputListCustomerDto, OutputListCustomerDto } from "@/usecase/customer/list/list.dto";
 
 export interface CustomerRepositoryInterface
-	extends RepositoryInterface<Customer> {}
+	extends RepositoryInterface<Customer> {
+	}

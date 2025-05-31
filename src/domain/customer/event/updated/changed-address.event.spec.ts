@@ -27,9 +27,9 @@ describe("ChangedAddressEvent", () => {
 
 		const customer = new Customer("id1", "Customer 1");
 		const address = new Address("street", "city", "state", "zip");
-    customer.setAddress(address);
+		customer.changeAddress(address);
 
-    const changedAddressEvent = new ChangedAddressEvent(customer);
+		const changedAddressEvent = new ChangedAddressEvent(customer);
 
 		dispatcher.notify(changedAddressEvent);
 

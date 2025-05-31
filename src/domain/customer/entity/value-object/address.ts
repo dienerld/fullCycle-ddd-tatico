@@ -3,12 +3,20 @@ export class Address {
 	private _city: string;
 	private _state: string;
 	private _zip: string;
+	private _number: string;
 
-	constructor(street: string, city: string, state: string, zip: string) {
+	constructor(
+		street: string,
+		city: string,
+		state: string,
+		zip: string,
+		number?: string,
+	) {
 		this._street = street;
 		this._city = city;
 		this._state = state;
 		this._zip = zip;
+		this._number = number || "";
 
 		this.validate();
 	}
@@ -29,9 +37,14 @@ export class Address {
 		return this._zip;
 	}
 
+	get number(): string {
+		return this._number;
+	}
+
 	toString() {
 		return `${this._street}, ${this._city}, ${this._state} ${this._zip}`;
 	}
+
 
 	private validate() {
 		if (!this._street || this._street.length === 0) {

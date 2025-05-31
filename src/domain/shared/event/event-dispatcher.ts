@@ -22,7 +22,7 @@ export class EventDispatcher implements EventDispatcherInterface {
 		}
 	}
 	unregisterAll(): void {
-		throw new Error("Method not implemented.");
+		this.eventsMap.clear();
 	}
 
 	getHandlers(): Map<string, Set<EventHandlerInterface>> {
