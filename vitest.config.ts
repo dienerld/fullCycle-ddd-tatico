@@ -4,6 +4,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/src',
+      '@domain': '/src/domain',
+      '@infrastructure': '/src/infrastructure',
     },
   },
   test: {
